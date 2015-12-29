@@ -211,12 +211,15 @@ InteractionManager.prototype.addEvents = function ()
     window.document.addEventListener('dragover', this.onMouseMove);
     this.interactionDOMElement.addEventListener('mousedown',    this.onMouseDown);
     this.interactionDOMElement.addEventListener('mouseout',     this.onMouseOut);
+    this.interactionDOMElement.addEventListener('dragleave',     this.onMouseOut);
 
     this.interactionDOMElement.addEventListener('touchstart',   this.onTouchStart);
     this.interactionDOMElement.addEventListener('touchend',     this.onTouchEnd);
     this.interactionDOMElement.addEventListener('touchmove',    this.onTouchMove);
 
     window.addEventListener('mouseup',  this.onMouseUp);
+    window.addEventListener('dragend', this.onMouseUp);
+    window.addEventListener('drop', this.onMouseUp);
 
     this.eventsAdded = true;
 };
@@ -245,6 +248,7 @@ InteractionManager.prototype.removeEvents = function ()
     window.document.removeEventListener('dragover', this.onMouseMove);
     this.interactionDOMElement.removeEventListener('mousedown', this.onMouseDown);
     this.interactionDOMElement.removeEventListener('mouseout',  this.onMouseOut);
+    this.interactionDOMElement.removeEventListener('dragleave',     this.onMouseOut);
 
     this.interactionDOMElement.removeEventListener('touchstart', this.onTouchStart);
     this.interactionDOMElement.removeEventListener('touchend',  this.onTouchEnd);
@@ -253,6 +257,8 @@ InteractionManager.prototype.removeEvents = function ()
     this.interactionDOMElement = null;
 
     window.removeEventListener('mouseup',  this.onMouseUp);
+    window.removeEventListener('dragend', this.onMouseUp);
+    window.removeEventListener('drop', this.onMouseUp);
 
     this.eventsAdded = false;
 };
