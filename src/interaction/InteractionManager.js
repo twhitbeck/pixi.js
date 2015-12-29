@@ -208,6 +208,7 @@ InteractionManager.prototype.addEvents = function ()
     }
 
     window.document.addEventListener('mousemove',    this.onMouseMove);
+    window.document.addEventListener('dragover', this.onMouseMove);
     this.interactionDOMElement.addEventListener('mousedown',    this.onMouseDown);
     this.interactionDOMElement.addEventListener('mouseout',     this.onMouseOut);
 
@@ -241,6 +242,7 @@ InteractionManager.prototype.removeEvents = function ()
     }
 
     window.document.removeEventListener('mousemove', this.onMouseMove);
+    window.document.removeEventListener('dragover', this.onMouseMove);
     this.interactionDOMElement.removeEventListener('mousedown', this.onMouseDown);
     this.interactionDOMElement.removeEventListener('mouseout',  this.onMouseOut);
 
